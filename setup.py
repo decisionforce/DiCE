@@ -1,0 +1,30 @@
+from setuptools import setup
+
+setup(
+    name="dice-codebase",
+    version="0.0.1",
+    author="pengzhenghao",
+    author_email="pengzh@ie.cuhk.edu.hk",
+    packages=[
+        'dice',
+        'dice.dice_ppo',
+        'dice.dice_sac',
+    ],
+    install_requires=[
+        "tensorflow-probability==0.9",
+        "yapf==0.27",
+        "gym==0.17.2",
+        "gym[mujoco]",
+        "gym[box2d]",
+        "distro",
+        "tabulate",
+        "ray==0.8.5",
+        "ray[tune]==0.8.5",
+        "ray[rllib]==0.8.5",
+        "ray[dashboard]==0.8.5",
+        "ray[debug]==0.8.5",
+        "dm-tree",
+        "gputil",
+        "pytest"
+    ]
+)

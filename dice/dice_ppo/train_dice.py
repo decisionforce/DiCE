@@ -1,11 +1,5 @@
-import argparse
-import os
-import pickle
-
-from ray import tune
-
-from dice import DiCETrainer
-from utils import *
+from dice.dice_ppo.dice_ppo import DiCETrainer
+from dice.utils import *
 
 os.environ['OMP_NUM_THREADS'] = '1'
 
@@ -25,7 +19,10 @@ def train(
     config = {
         "seed": tune.grid_search([i * 100 for i in range(num_seeds)]),
         "env": MultiAgentEnvWrapper,
-        "env_config": {"env_name": env_name, "num_agents": num_agents},
+        "env_config": {
+            "env_name": env_name,
+            "num_agents": num_agents
+        },
         "log_level": "DEBUG" if test_mode else "INFO"
     }
     if extra_config:
@@ -38,8 +35,7 @@ def train(
         keep_checkpoints_num=10,
         checkpoint_score_attr="episode_reward_mean",
         checkpoint_at_end=True,
-        stop={"timesteps_total": stop}
-        if isinstance(stop, int) else stop,
+        stop={"timesteps_total": stop} if isinstance(stop, int) else stop,
         config=config,
         max_failures=20,
         reuse_actors=False,
@@ -88,7 +84,7 @@ if __name__ == '__main__':
         'sample_batch_size': 200 if large else 50,
         'sgd_minibatch_size': 100 if large else 64,
         'train_batch_size': 10000 if large else 2048,
-        "num_gpus": 0.4,
+        "num_gpus": 0.4 if args.num_gpus != 0 else 0,
         "num_cpus_per_worker": 0.4,
         "num_cpus_for_driver": 0.45,
         "num_envs_per_worker": 8 if large else 5,

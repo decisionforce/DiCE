@@ -1,7 +1,13 @@
+"""
+Compared to the basic Fully Connected Actor-critic network, we introduce a
+new diversity value network (DVN) here, and also provide a function
+diversity_value_function to retrieve the diversity value predicted by DVN.
+"""
 import numpy as np
-from ray.rllib.models.tf.misc import normc_initializer, get_activation_fn
+from ray.rllib.models.tf.misc import normc_initializer
 from ray.rllib.models.tf.tf_modelv2 import TFModelV2
 from ray.rllib.utils import try_import_tf
+from ray.rllib.utils.framework import get_activation_fn
 
 tf = try_import_tf()
 
@@ -25,7 +31,7 @@ class ActorDoubleCriticNetwork(TFModelV2):
 
         # we are using obs_flat, so take the flattened shape as input
         inputs = tf.keras.layers.Input(
-            shape=(np.product(obs_space.shape),), name="observations"
+            shape=(np.product(obs_space.shape), ), name="observations"
         )
         last_layer = inputs
         i = 1
@@ -63,6 +69,7 @@ class ActorDoubleCriticNetwork(TFModelV2):
                 kernel_initializer=normc_initializer(0.01)
             )(last_layer)
 
+        # pengzh: we use three different NN with same size.
         assert not vf_share_layers
         last_layer = inputs
         i = 1
