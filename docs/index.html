@@ -6,7 +6,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Project Page Template</title>
+  <title>
+      Diversity-regularized Collaborative Exploration</title>
 
   <link href="./assets/bootstrap.min.css" rel="stylesheet">
   <link href="./assets/font.css" rel="stylesheet" type="text/css">
@@ -54,7 +55,24 @@
 <div class="section">
   <div class="title">Overview</div>
   <div class="body">
-      Working In Progress
+
+
+<div  id='write'  class = 'is-mac'>
+
+  <p><span>Working together in a team towards a common goal makes life easier. However, in most of the existing Reinforcement Learning (RL) algorithms, usually only one agent or a global agent with several replicas explore the environment and learn to solve the task. The agent usually limits its exploration within a small region of the state-action space due to the initialization and previous experience, as illustrated by the light area in the above figure.</span></p>
+
+  <p><span>Many works have been proposed to encourage sufficient exploration in the single-agent setting, for example, through taking action based on a stochastic distribution or adding extra components to the system like boosting entropy, intrinsic reward, extra loss, parameter noise, curiosity, and so on. However, for the above approaches, the possible </span><em><span>exploration area</span></em><span> is bounded in a limited subspace determined by the agent&#39;s behavior, which is learned from its previous experience. We call this as the </span><strong><span>local exploration</span></strong><span> since the exploration area inevitably misses those rarely visited states.</span></p>
+
+  <p><span>Another way to expand exploration space is through distributed RL which using multiple homogeneous actors to generate a large amount of trajectory data independently. However, inflating the training batch with similarly-behaving actors is still the local exploration since only the improvements at the nearby area of current policy can be realized. Motivated by the distributed RL, we address the non-local exploration problem with a new method called the </span><strong><span>Collaborative Exploration</span></strong><span> (CE) which employs a team of multiple heterogeneous agents and shares the experience of each agent among the team.</span></p>
+
+  <p><span>CE is distinguished from existing distributed RL algorithms in the following aspects: (1). CE is </span><em><span>decentralized</span></em><span> so no global agent exists in the system and we don&#39;t need to sync the weights of all agents. (2). CE leverages multiple </span><em><span>heterogeneous</span></em><span> agents that can update individually based on the shared experiences and the diversity among them is preserved via a regularization mechanism. (3). CE enables the </span><em><span>non-local exploration</span></em><span> thus breaks the limits of the previous single-agent setting, which is verified by the performance improvement in the extensive experiments.</span></p>
+
+  <p><span>Since all the agents are trained with the same shared data, one issue is that the diversity of agents gradually vanishes as the training goes. To resolve this, we further introduce the </span><em><span>Diversity Regularization</span></em><span> (DR) based on Feasible Direction Method that can improve the policies while preserves the diversity of agents. Compared to previous works that train a set of diverse agents in a sequential manner, DR modulates the diversity of agents that are concurrently trained, which takes much less time than the sequential training. Besides, we design a compact diversity reward, avoiding maintaining a set of auto-encoders or hand-crafted representation.</span></p>
+
+  <p><span>To summarize, we formulate a novel policy optimization framework called Diversity-regularized Collaborative Exploration (DiCE). DiCE combines the Collaborative Exploration that shares knowledge across multiple agents as well as the Diversity Regularization that directs the exploration of each agent. DiCE is implemented in both on-policy and off-policy settings and is compared with baselines e.g. PPO and SAC. The experimental results show that DiCE outperforms both on-policy and off-policy baselines in most cases in the MuJoCo locomotion benchmarks.% when sampling the same amounts of steps from the environments.</span></p>
+
+  <p>&nbsp;</p></div>
+
   </div>
 </div>
 <!-- === Overview Section Ends === -->
@@ -64,24 +82,50 @@
 <div class="section">
   <div class="title">Results</div>
   <div class="body">
-      Working In Progress
-<!--     Image or GIF results here. The highlight of the work.
 
-    Adjust the number of rows and columns (EVERY project differs).
-    <table width="100%" style="margin: 20pt 0; text-align: center;">
+
+
+We implement DiCE framework in both on-policy and off-policy settings and compare them with two on-policy baselines PPO, A2C, one off-policy baseline SAC and one diversity-encouraging baseline TNB.
+We train our agents in five locomotion tasks in MuJoCo simulator. 
+
+        <table width="100%" style="margin: 20pt 0; text-align: center;">
       <tr>
-        <td><img src="https://via.placeholder.com/300x100" width="90%"></td>
+        <td><img src="assets/table.pdf" width="60%"></td>
       </tr>
     </table>
 
-    Demo video here.
+<strong> On-policy Setting </strong><br>
+As shown in following figures, in all the five tasks, our method achieves better results compared to the baselines PPO and A2C. In the above table, we see that in four environments DiCE-PPO achieves a substantial improvement over the baselines,
+while in the Hopper-v3 PPO and TNB achieve higher score than DiCE.
+In Hopper-v3, PPO collapses after a long time of training, while DiCE maintains its performance until the end of the training, which shows that DiCE is robust in training stability. 
 
-    Adjust the frame size based on the demo (EVERY project differs).
-    <div style="position: relative; padding-top: 50%; margin: 20pt 0; text-align: center;">
-      <iframe src="https://via.placeholder.com/900x450" frameborder=0
-              style="position: absolute; top: 2.5%; left: 2.5%; width: 95%; height: 100%;"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe> -->
+
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="assets/diceppo/ant.pdf" width="100%"></td>
+        <td><img src="assets/diceppo/halfcheetah.pdf" width="100%"></td>
+        <td><img src="assets/diceppo/hopper.pdf" width="100%"></td>
+        <td><img src="assets/diceppo/humanoid.pdf" width="100%"></td>
+        <td><img src="assets/diceppo/walker.pdf" width="100%"></td>
+      </tr>
+    </table>
+
+
+<strong> Off-policy Setting </strong><br>
+As shown in the table and the following figures, in off-policy setting, DiCE-SAC outperforms the SAC baseline in Hopper-v3 and Humanoid-v3 with faster convergence while achieves comparable performance in HalfCheetah-v3 and Walker2d-v3. In Ant-v3, the DiCE-SAC fails to progress compared to SAC. This might because that Ant-v3 environment has loose constraints on action and has larger action space, thus the structure of diversity is more complex than other environments, making the learning of diversity critic harder. We have the similar observation for on-policy DiCE when utilizing a diversity value network (please refer to the ablation study in paper). 
+
+        <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="assets/dicesac/ant.pdf" width="100%"></td>
+        <td><img src="assets/dicesac/halfcheetah.pdf" width="100%"></td>
+        <td><img src="assets/dicesac/hopper.pdf" width="100%"></td>
+        <td><img src="assets/dicesac/humanoid.pdf" width="100%"></td>
+        <td><img src="assets/dicesac/walker.pdf" width="100%"></td>
+      </tr>
+    </table>
+
+The performance improvements brought by DiCE in on-policy and off-policy settings shows the generalization ability of our framework. 
+
     </div>
   </div>
 </div>

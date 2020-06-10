@@ -11,28 +11,23 @@ Conventional Reinforcement Learning (RL) algorithms usually have one single agen
 
 ## Quickstart
 
-We use the following packages:
-
-1. ray==0.8.5
-2. gym==0.17.2
-3. tensorflow==2.1.0
-4. numpy==1.16.0
-5. mujoco-py==1.50.1.68
+We use the following packages: `ray==0.8.5`, `gym==0.17.2`, `tensorflow==2.1.0`, `numpy==1.16.0`, `mujoco-py==1.50.1.68`.
 
 For a quick start, you can run the following scripts to setup the environment:
 
 ```bash
+git clone https://github.com/decisionforce/DiCE.git
+cd DiCE
+
 conda env create -f environment.yml
 conda activate dice
 pip install gym[mujoco]
 pip install gym[box2d]
 pip install ray[rllib]==0.8.5
-
-cd DiCE
 pip install -e .
 ```
 
-（You may encounter trouble when installing mujoco, please make sure at the end you have successfully install mujoco 150 version.)
+（You may encounter troubles when installing mujoco, please make sure that at the end you have successfully install mujoco 150 version.)
 
 To test whether you can run the codes without bugs, run:
 
