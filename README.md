@@ -1,7 +1,8 @@
 # Diversity-regularized Collaborative Exploration
 
-This repository contains codes for paper *"Non-local Policy Optimization via Diversity-regularized Collaborative Exploration"*. 
+[[Blog]](https://decisionforce.github.io/DiCE/) [[Paper]](#)
 
+This repository contains code for paper *"Non-local Policy Optimization via Diversity-regularized Collaborative Exploration"*. 
 
 
 ## Abstract
