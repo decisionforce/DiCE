@@ -72,14 +72,26 @@ DiCE is implemented in both on-policy and off-policy settings and is compared wi
   <div class="title">Results</div>
   <div class="body">
 
+        <table width="100%" style="margin: 0 0; text-align: center;">
+      <tr>
+        <td>
+          <video  style="display:block; width:98%; height:auto;" autoplay controls loop="loop">
+<source src="assets/dice-webpage-video-1080p.mov" type="video/mp4" />       </video>
+        </td>
+      </tr>
+    </table>
+    <br>
+<!-- 
+    <p><em>(The behaviors of 5 trained agents in DiCE-PPO team at Walker2d-v3 environments)</em></p><br> -->
 
 
+<strong> Overall Performance </strong><br>
 We implement DiCE framework in both on-policy and off-policy settings and compare them with two on-policy baselines PPO, A2C, one off-policy baseline SAC and one diversity-encouraging baseline TNB.
 We train our agents in five locomotion tasks in MuJoCo simulator. 
 
         <table width="100%" style="margin: 20pt 0; text-align: center;">
       <tr>
-        <td><img src="assets/table.pdf" width="60%"></td>
+        <td><img src="assets/table.png" width="60%"></td>
       </tr>
     </table>
 
@@ -91,11 +103,11 @@ In Hopper-v3, PPO collapses after a long time of training, while DiCE maintains 
 
     <table width="100%" style="margin: 20pt 0; text-align: center;">
       <tr>
-        <td><img src="assets/diceppo/ant.pdf" width="100%"></td>
-        <td><img src="assets/diceppo/halfcheetah.pdf" width="100%"></td>
-        <td><img src="assets/diceppo/hopper.pdf" width="100%"></td>
-        <td><img src="assets/diceppo/humanoid.pdf" width="100%"></td>
-        <td><img src="assets/diceppo/walker.pdf" width="100%"></td>
+        <td><img src="assets/diceppo/ant.png" width="100%"></td>
+        <td><img src="assets/diceppo/halfcheetah.png" width="100%"></td>
+        <td><img src="assets/diceppo/hopper.png" width="100%"></td>
+        <td><img src="assets/diceppo/humanoid.png" width="100%"></td>
+        <td><img src="assets/diceppo/walker.png" width="100%"></td>
       </tr>
     </table>
 
@@ -105,11 +117,11 @@ As shown in the table and the following figures, in off-policy setting, DiCE-SAC
 
         <table width="100%" style="margin: 20pt 0; text-align: center;">
       <tr>
-        <td><img src="assets/dicesac/ant.pdf" width="100%"></td>
-        <td><img src="assets/dicesac/halfcheetah.pdf" width="100%"></td>
-        <td><img src="assets/dicesac/hopper.pdf" width="100%"></td>
-        <td><img src="assets/dicesac/humanoid.pdf" width="100%"></td>
-        <td><img src="assets/dicesac/walker.pdf" width="100%"></td>
+        <td><img src="assets/dicesac/ant.png" width="100%"></td>
+        <td><img src="assets/dicesac/halfcheetah.png" width="100%"></td>
+        <td><img src="assets/dicesac/hopper.png" width="100%"></td>
+        <td><img src="assets/dicesac/humanoid.png" width="100%"></td>
+        <td><img src="assets/dicesac/walker.png" width="100%"></td>
       </tr>
     </table>
 
