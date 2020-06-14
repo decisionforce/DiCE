@@ -1,13 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh">
 
 
 <!-- === Header Starts === -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>
-        Diversity-regularized Collaborative Exploration</title>
+    <title>DiCE：维持多样性的协作探索</title>
 
     <link href="./assets/bootstrap.min.css" rel="stylesheet">
     <link href="./assets/font.css" rel="stylesheet" type="text/css">
@@ -34,31 +33,32 @@
 
         <div class="title" style="padding-top: 25pt;">
             <!-- Set padding as 10 if title is with two lines. -->
-            Non-local Policy Optimization via <br>
-            Diversity-regularized Collaborative Exploration
-
+            非局部策略优化：维持多样性的协作探索<br>
+            <small>
+                Non-local Policy Optimization via <br>
+                Diversity-regularized Collaborative Exploration</small><br>
+            页面尚未完成
         </div>
 
     </div>
 
     <!-- === Title Ends === -->
     <div class="author">
-        <a href="https://pengzhenghao.github.io" target="_blank">Zhenghao
-            Peng</a>,&nbsp;
-        <a href="#" target="_blank">Hao Sun</a>,&nbsp;
-        <a href="http://bzhou.ie.cuhk.edu.hk" target="_blank">Bolei Zhou</a>
+        <a href="https://pengzhenghao.github.io" target="_blank">彭正皓</a>,
+        <a href="#" target="_blank">孙浩</a>,
+        <a href="http://bzhou.ie.cuhk.edu.hk" target="_blank">周博磊</a>
     </div>
     <div class="institution">
-        The Chinese University of Hong Kong
+        香港中文大学
     </div>
     <div class="link">
-        <a href="#" target="_blank">[Paper]</a>&nbsp;
+        <a href="#" target="_blank">[论文]</a>&nbsp;
         <a href="https://github.com/decisionforce/DiCE"
-           target="_blank">[Code]</a>
+           target="_blank">[代码]</a>
     </div>
 
     <div style="position: relative;">
-        <div style="position:absolute;right:0;bottom: 0;">
+        <div style="position:absolute;right:0pt;bottom: 0pt;">
             <a href="index.html" target="_self">[EN]</a>&nbsp;
             <a href="index_zh.html" target="_self">[中文]</a>
         </div>
@@ -69,34 +69,23 @@
 
 
 <!-- === Overview Section Starts === -->
-<div class="section">
-    <div class="title">Overview</div>
+<div class="section" style="font-family: SimHei">
+    <div class="title">概述</div>
     <div class="body">
 
         <div class="teaser">
             <img align=right style="width: 50%" src="assets/github-teaser.png">
         </div>
 
-        <p>Working together in a team towards a common goal makes life easier.
-            However, in most of the existing Reinforcement Learning (RL)
-            algorithms, usually only one agent or a global agent with several
-            replicas explore the environment and learn to solve the task. The
-            agent usually limits its exploration within a small region of the
-            state-action space due to the initialization and previous
-            experience, as illustrated by the light area in the above figure,
-            which we called the <strong>local exploration</strong> problem.</p>
+        <p>
+            团队合作帮助人们实现共同的目标。然而在现有的强化学习算法中，通常只有一个智能体或一个有很多分身的全局智能体在与环境交互并学习如何解决任务。如右图所示，由于不同初始化以及智能体所收集的经验的不同，智能体能探索到的那些地方（状态-动作空间）通常都被限制在有限的范围内。我们将这个问题称之为<strong>局部探索</strong>问题。
+        </p>
 
-        <p>We address the local exploration problem with a new policy
-            optimization framework called Diversity-regularized Collaborative
-            Exploration (DiCE). DiCE combines the Collaborative Exploration (CE)
-            that maintains a team of agents and shares knowledge across multiple
-            agents as well as the
-            Diversity Regularization (DR) that directs the exploration of each
-            agent and maintains the diversity among them.
-            DiCE is implemented in both on-policy and off-policy settings and is
-            compared with baselines e.g. PPO and SAC. The experimental results
-            show that DiCE outperforms both on-policy and off-policy baselines
-            in most cases in the MuJoCo locomotion benchmarks.</p>
+        <p>
+            我们着眼于局部探索问题问题并提出了一种策略优化框架，名为“维持多样性的协作探索”（Diversity-regularized
+            Collaborative Exploration，简称DiCE）。
+            DiCE结合了“协作探索”方法（Collaborative Exploration，CE）和“多样性正则”方法（Diversity
+            Regularization，DR）。“协作探索”维护一个包含多个不同的智能体的团队并让他们分享知识。“多样性正则”则指导每个智能体的探索并维持着整个团队的多样性。我们在在线策略（on-policy）和离线策略（off-policy）场景下实现了DiCE框架，并将其与很强的基准算法如PPO和SAC进行比较。在MuJoCo运动环境内的实验结果表明DiCE能在大多数情况下取得超越基准的表现。</p>
 
     </div>
 </div>
@@ -105,7 +94,7 @@
 
 <!-- === Result Section Starts === -->
 <div class="section">
-    <div class="title">Results</div>
+    <div class="title">结果</div>
     <div class="body">
 
         <table width="100%" style="margin: 0 0; text-align: center;">
@@ -119,14 +108,11 @@
                 </td>
             </tr>
         </table>
-        <br>
+        <em>第一行：在Humanoid-v3环境中，五个DiCE-SAC训练出的集体中的智能体。第二行：在Hopper-v3环境中，五个DiCE-PPO训练出的集体中的智能体。各视频上方显示为该智能体的平均回报。</em>
+        <br><br>
 
-
-        <strong> Overall Performance </strong><br>
-        We implement DiCE framework in both on-policy and off-policy settings
-        and compare them with two on-policy baselines PPO, A2C, one off-policy
-        baseline SAC and one diversity-encouraging baseline TNB.
-        We train our agents in five locomotion tasks in MuJoCo simulator.
+        <strong>总体表现 </strong><br>
+        我们实现了DiCE框架并将其与在线策略基准算法PPO和A2C、离线策略基准算法SAC以及一种鼓励多样性的算法TNB在五个MuJoCo运动环境中进行了比较。我们在五个MuJoCo运动环境中进行了实验。下表展示了实验的主要结果。可以看到，我们提出的DiCE算法在大多数情况下取得了超过和持平基准算法的表现。
 
         <table width="100%" style="margin: 20pt 0; text-align: center;">
             <tr>
@@ -134,15 +120,8 @@
             </tr>
         </table>
 
-        <strong> On-policy Setting </strong><br>
-        As shown in following figures, in all the five tasks, our method
-        achieves better results compared to the baselines PPO and A2C. In the
-        above table, we see that in four environments DiCE-PPO achieves a
-        substantial improvement over the baselines,
-        while in the Hopper-v3 PPO and TNB achieve higher score than DiCE.
-        In Hopper-v3, PPO collapses after a long time of training, while DiCE
-        maintains its performance until the end of the training, which shows
-        that DiCE is robust in training stability.
+        <strong> 在线策略（On-policy）场景下的结果 </strong><br>
+        如下图所示，相比起PPO和A2C，我们的算法在五个任务中都取得了不俗的表现。在上表中我们看到尽管在Hopper-v3环境中PPO和TNB胜于我们的算法，在另外四个环境中DiCE-PPO取得了长足的进步。在Hopper-v3环境中PPO在长时间的训练之后表现变差，而DiCE则一直维持着训练后的表现。这表明DiCE在训练过程中更加稳定。
 
 
         <table width="100%" style="margin: 20pt 0; text-align: center;">
@@ -156,17 +135,8 @@
         </table>
 
 
-        <strong> Off-policy Setting </strong><br>
-        As shown in the table and the following figures, in off-policy setting,
-        DiCE-SAC outperforms the SAC baseline in Hopper-v3 and Humanoid-v3 with
-        faster convergence while achieves comparable performance in
-        HalfCheetah-v3 and Walker2d-v3. In Ant-v3, the DiCE-SAC fails to
-        progress compared to SAC. This might because that Ant-v3 environment has
-        loose constraints on action and has larger action space, thus the
-        structure of diversity is more complex than other environments, making
-        the learning of diversity critic harder. We have the similar observation
-        for on-policy DiCE when utilizing a diversity value network (please
-        refer to the ablation study in paper).
+        <strong> 离线策略（Off-policy）场景下的结果</strong><br>
+        表格及下图显示，在离线策略场景下，在Hopper-v3和Humanoid-v3环境中，DiCE-SAC比基准算法更快的收敛，而在HalfCheetah-v3和Walker2d-v3环境中则取得了持平的表现。在Ant-v3环境中，DiCE-SAC无法有效地学习。我们认为这是因为Ant-v3环境对于动作有着更松的限制且拥有更大的动作空间。这导致多样性（diversity）作为一种数值指标而言其结构更加复杂，从而更难被DiCE-SAC中的价值网络学会。当我们为在线策略场景下的DiCE算法加上了价值网络之后，也观察到了类似的现象（请参考论文中的对照实验）。
 
         <table width="100%" style="margin: 20pt 0; text-align: center;">
             <tr>
@@ -178,25 +148,22 @@
             </tr>
         </table>
 
-        The performance improvements brought by DiCE in on-policy and off-policy
-        settings shows the generalization ability of our framework.
+        在在线策略及离线策略场景下的大多数情况下，DiCE均取得了很好的表现。这表明我们提出的框架有着很强的通用性。
 
     </div>
 </div>
-</div>
+
 <!-- === Result Section Ends === -->
 
 
 <!-- === Reference Section Starts === -->
 <div class="section">
-    <div class="bibtex">BibTeX</div>
-    Working In Progress
+    <div class="bibtex">BibTeX引用</div>
+    尚未完成
 
     <br>
-    <a href="https://www.bilibili.com/video/BV1cp4y1Q7UT/" target="_blank">bilibili
-        link of video</a><br>
-    <a href="https://youtu.be/wijDTvxDwnw" target="_blank">YouTube link of
-        video</a>
+    <a href="https://www.bilibili.com/video/BV1cp4y1Q7UT/" target="_blank">bilibili视频链接</a><br>
+    <a href="https://youtu.be/wijDTvxDwnw" target="_blank">YouTube视频链接</a>
     <!-- <pre>
     @article{alias,
       title   = {},
@@ -233,7 +200,6 @@
       </div>
     </div> -->
     <!-- === Reference Section Ends === -->
-
 </div>
 </body>
 </html>
