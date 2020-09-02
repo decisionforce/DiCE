@@ -1,6 +1,6 @@
 # Diversity-regularized Collaborative Exploration
 
-[[Blog]](https://decisionforce.github.io/DiCE/) [[Paper]](#)
+[[Blog]](https://decisionforce.github.io/DiCE/) [[Paper]](https://arxiv.org/pdf/2006.07781.pdf)
 
 This repository contains code for paper *"Non-local Policy Optimization via Diversity-regularized Collaborative Exploration"*. 
 
@@ -24,6 +24,7 @@ conda activate dice
 pip install gym[mujoco]
 pip install gym[box2d]
 pip install ray[rllib]==0.8.5
+pip install ray[tune]==0.8.5
 pip install -e .
 ```
 
@@ -41,7 +42,7 @@ or
 
 ```bash
 python dice_sac/test_dice_sac.py
-python dice_sac/train_dice.py --test --num-gpus 0
+python dice_sac/train_dice.py --test --num-gpus 0 --exp-name TEST
 ```
 
 

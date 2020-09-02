@@ -14,6 +14,7 @@ setup(
         "tensorflow-probability==0.9",
         "yapf==0.27",
         "gym==0.17.2",
+        "tensorflow=2.1.0",
         "gym[mujoco]",
         "gym[box2d]",
         "distro",
@@ -25,6 +26,7 @@ setup(
         "ray[debug]==0.8.5",
         "dm-tree",
         "gputil",
-        "pytest"
+        "pytest",
+        "requests"
     ]
 )
